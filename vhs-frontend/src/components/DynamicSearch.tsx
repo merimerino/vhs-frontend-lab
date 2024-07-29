@@ -1,5 +1,20 @@
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
+// Mock data
+const mockData = [
+  { id: 1, title: "12 Angry Men" },
+  { id: 2, title: "The Shawshank Redemption" },
+  { id: 3, title: "Schindler's List" },
+  { id: 4, title: "The Godfather" },
+  { id: 5, title: "Pulp Fiction" },
+  { id: 6, title: "Goodfellas" },
+  { id: 7, title: "Seven Samurai" },
+  { id: 8, title: "The Matrix" },
+  { id: 9, title: "Fight Club" },
+  { id: 10, title: "Life Is Beautiful" },
+];
 
 const Container = styled.div`
   position: relative;
@@ -42,7 +57,6 @@ const OptionsList = styled.ul<OptionsListProps>`
   background-color: var(--surface-s1);
   z-index: 10;
   display: ${(props) => (props.showOptions ? 'block' : 'none')};
-
 `;
 
 const OptionItem = styled.li`
@@ -52,22 +66,53 @@ const OptionItem = styled.li`
   color: var(--primary-text);
 
   &:hover {
-    background-color: var(--surface-s3);
+    background-color: var(--surface-s2);
   }
-
 `;
 
 const DynamicSearch: React.FC = () => {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [filteredOptions, setFilteredOptions] = useState<any[]>([]);
+  const [showOptions, setShowOptions] = useState<boolean>(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (searchQuery) {
+      const results = mockData.filter((movie) =>
+        movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredOptions(results);
+      setShowOptions(results.length > 0);
+    } else {
+      setFilteredOptions([]);
+      setShowOptions(false);
+    }
+  }, [searchQuery]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleOptionClick = (id: number) => {
+    router.push(`/vhs/${id}`);
+  };
 
   return (
     <Container>
       <SearchInput
         type="text"
         id="searchBox"
-        
+        value={searchQuery}
+        onChange={handleInputChange}
         placeholder="Type here to search..."
       />
-
+      <OptionsList showOptions={showOptions}>
+        {filteredOptions.map((movie) => (
+          <OptionItem key={movie.id} onClick={() => handleOptionClick(movie.id)}>
+            {movie.title}
+          </OptionItem>
+        ))}
+      </OptionsList>
     </Container>
   );
 };
