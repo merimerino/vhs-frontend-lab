@@ -66,7 +66,7 @@ const OptionItem = styled.li`
   color: var(--primary-text);
 
   &:hover {
-    background-color: var(--surface-s2);
+    background-color: var(--surface-s);
   }
 `;
 
