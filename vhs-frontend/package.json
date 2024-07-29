@@ -1,0 +1,42 @@
+{
+  "name": "project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/lab": "^5.0.0-alpha.172",
+    "@mui/material": "^5.16.1",
+    "axios": "^1.7.2",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-styled-components": "^2.1.4",
+    "framer-motion": "^11.2.6",
+    "next": "14.2.3",
+    "nookies": "^2.5.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "styled-components": "^6.1.11",
+    "styled-system": "^5.1.5",
+    "swr": "^2.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/nookies": "^2.0.3",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "eslint-config-prettier": "^9.1.0",
+    "typescript": "^5.5.3"
+  }
+}

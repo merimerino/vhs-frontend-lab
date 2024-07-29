@@ -1,0 +1,80 @@
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { checkIsLoggedIn, logoutUser } from '@/utils/authentication'; 
+import { useRouter } from 'next/router';
+
+const HeaderContainer = styled.header`
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--surface-s1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+`;
+
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 4rem;
+    margin-right: 0.5rem;
+  }
+
+  h1 {
+    font-size: 24px;
+    color: var(--secondary-default);
+    margin: 0;
+    font-weight: lighter;
+
+    span {
+      color: var(--primary-variant);
+    }
+  }
+`;
+
+const NavLinks = styled.nav`
+  display: flex;
+  gap: 2rem;
+
+  a {
+    text-decoration: none;
+    color: var(--primary-default);
+    font-size: 16px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const LoginButton = styled.button`
+  visibility:hidden;
+  width:5rem;
+`;
+
+const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
+
+
+  return (
+    <HeaderContainer>
+      <Logo>
+        <a href="/"><img src="/vhs-logo.svg" alt="Logo" /></a>
+        <a href="/"><h1>V<span>H</span>S</h1></a>
+      </Logo>
+      <NavLinks>
+        <a href="/">Home</a>
+        <a href="/catalogue">Catalogue</a>
+        
+      </NavLinks>
+      <LoginButton/>
+    </HeaderContainer>
+  );
+};
+
+export default Header;
