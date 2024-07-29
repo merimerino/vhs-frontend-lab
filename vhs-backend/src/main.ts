@@ -9,7 +9,10 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix('api');
   app.useStaticAssets(join(__dirname, '..', 'public'), { prefix: '/public/' });
-  
+
+  app.enableCors({
+    origin: '*',
+  });
 
   const config = new DocumentBuilder()
     .setTitle('True North VHS API')
