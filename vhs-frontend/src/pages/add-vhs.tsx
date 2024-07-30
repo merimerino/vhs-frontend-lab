@@ -1,7 +1,6 @@
 import Header from '@/components/Header'
-import { useEffect } from 'react';
-import Description from '@/components/Description'
 import styled from 'styled-components'
+import AddVHSForm from '@/components/AddVHSForm';
 
 const PageContainer = styled.div`
   display: flex;
@@ -11,10 +10,11 @@ const PageContainer = styled.div`
 
 
 export default function HomePage() {
+
   return (
     <PageContainer>
       <Header/>
-      <Description/>
+      <AddVHSForm/>
     </PageContainer>
   );
 }

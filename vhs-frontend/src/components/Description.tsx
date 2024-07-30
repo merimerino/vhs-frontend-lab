@@ -38,7 +38,8 @@ const Header = () => {
         <img src="/vhs-logo.svg" alt="Logo" />
       </BigLogo>
       <Description>
-        Welcome to the V<span>H</span>S Catalogue, a place that offers all of the variety of VHS tapes available for rent.
+      Welcome to the V<span>H</span>S Catalogue, your ultimate destination for an extensive selection of VHS tapes available for rent. 
+      Explore our diverse collection and discover the perfect tapes to suit every taste and occasion.
       </Description>
     </DescriptionContainer>
   );

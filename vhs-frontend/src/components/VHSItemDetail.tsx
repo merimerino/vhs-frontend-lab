@@ -30,7 +30,7 @@ const Thumbnail = styled.img`
   margin-bottom: 1rem;
 `;
 
-interface MovieDetailProps {
+interface VHSItemDetailProps {
   title: string;
   description: string;
   genre: string;
@@ -42,7 +42,7 @@ interface MovieDetailProps {
   thumbnail: string | null;
 }
 
-const MovieDetail: React.FC<MovieDetailProps> = ({
+const VHSItemDetail: React.FC<VHSItemDetailProps> = ({
   title,
   description,
   genre,
@@ -72,4 +72,4 @@ const MovieDetail: React.FC<MovieDetailProps> = ({
   );
 };
 
-export default MovieDetail;
+export default VHSItemDetail;

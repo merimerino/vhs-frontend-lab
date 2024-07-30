@@ -25,6 +25,7 @@
     "nookies": "^2.5.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-router-dom": "^6.25.1",
     "styled-components": "^6.1.11",
     "styled-system": "^5.1.5",
     "swr": "^2.2.5"
