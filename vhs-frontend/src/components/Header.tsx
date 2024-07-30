@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { checkIsLoggedIn, logoutUser } from '@/utils/authentication'; 
-import { useRouter } from 'next/router';
 
 const HeaderContainer = styled.header`
   position: sticky;
@@ -51,15 +48,12 @@ const NavLinks = styled.nav`
   }
 `;
 
-const LoginButton = styled.button`
+const Empty = styled.div`
   visibility:hidden;
   width:5rem;
 `;
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const router = useRouter();
-
 
   return (
     <HeaderContainer>
@@ -72,7 +66,7 @@ const Header = () => {
         <a href="/catalogue">Catalogue</a>
         
       </NavLinks>
-      <LoginButton/>
+      <Empty/>
     </HeaderContainer>
   );
 };

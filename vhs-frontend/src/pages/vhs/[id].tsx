@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Header from '@/components/Header';
-import VHSItemDetail from '@/components/VHSItemDetail';
+import VHSDetail from '@/components/VHSDetail';
 import styled from 'styled-components';
 import { VHSItem } from '@/models/VHSItem';
 
@@ -19,7 +19,8 @@ const VHSItemPage: React.FC<VHSItemPageProps> = ({ VHSItem }) => {
     <PageContainer>
       <Header />
       {VHSItem ? (
-        <VHSItemDetail
+        <VHSDetail
+          id={VHSItem.id}
           title={VHSItem.title}
           description={VHSItem.description}
           genre={VHSItem.genre}
@@ -37,7 +38,6 @@ const VHSItemPage: React.FC<VHSItemPageProps> = ({ VHSItem }) => {
   );
 };
 
-// Fetch VHS item based on the `id` parameter
 export const getServerSideProps: GetServerSideProps<VHSItemPageProps> = async (context) => {
   const { id } = context.params as { id: string };
 
@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps<VHSItemPageProps> = async (c
     };
   } catch (error) {
     console.error('Error fetching VHS item:', error);
-    return { notFound: true }; // Return 404 if the item is not found
+    return { notFound: true };
   }
 };
 

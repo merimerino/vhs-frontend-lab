@@ -3,25 +3,27 @@
     --border-radius: 12px;
     --font-sans: "Inter", sans-serif;
 
-    --surface-s1: #FFFFFF;
-    --surface-s2: #D9D9D9;
+    --surface-s1: #fcfcfc;
+    --surface-s2: #D49144;
     --surface-s3: #564846;
     --primary-default: #000000;
     --primary-text: #585858;
-    --primary-variant: #D49144;
+    --primary-variant: #735e46;
     --secondary-default: #5a403a;
-    --on-surface-nLv1: #D9D9D9;
+    --on-surface-nLv1: #c6bcbc;
     --on-surface-nLv2: rgba(18, 18, 18, 0.85);
 }
 
 .dark {
-    --surface-s1: #494643;
-    --surface-s2: #000000;
-    --primary-default: #1ae1e1;
-    --primary-variant: #007fc4;
-    --secondary-default: #3E2723;
-    --on-surface-nLv1: #e0e0e0;
-    --on-surface-nLv2: rgba(224, 224, 224, 0.85);
+    --surface-s1: #FFFFFF;
+    --surface-s2: #D49144;
+    --surface-s3: #564846;
+    --primary-default: #000000;
+    --primary-text: #585858;
+    --primary-variant: #735e46;
+    --secondary-default: #5a403a;
+    --on-surface-nLv1: #D9D9D9;
+    --on-surface-nLv2: rgba(18, 18, 18, 0.85);
 }
 
 * {
@@ -40,6 +42,8 @@ body {
 body {
     color: var(--on-surface-nLv1);
     background: var(--surface-s1);
+    font-weight: lighter;
+
 }
 
 a {

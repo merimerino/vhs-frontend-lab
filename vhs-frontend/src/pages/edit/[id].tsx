@@ -8,11 +8,11 @@ const PageContainer = styled.div`
   height: 100vh;
 `;
 
-export default function AddVHSPage() {
+export default function EditVHSPage() {
   return (
     <PageContainer>
       <Header />
-      <VHSForm />
+      <VHSForm isEdit={true} />
     </PageContainer>
   );
 }

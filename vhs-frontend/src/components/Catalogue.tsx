@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DynamicSearch from './DynamicSearch';
 import { VHSItem as VHSItemType } from '@/models/VHSItem';
@@ -6,14 +6,14 @@ import { VHSItem as VHSItemType } from '@/models/VHSItem';
 const CatalogueContainer = styled.div`
   padding: 2rem;
   background-color: var(--surface-s1);
-  color: var(--primary-default);
+  color: var(--primary-text);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
 const VHSItem = styled.a`
-  flex: 0 1 calc(25% - 1rem); /* 4 items per row with some gap */
+  flex: 0 1 calc(25% - 1rem);
   margin: 0.5rem;
   background: white;
   border: 1px solid #ccc;
@@ -33,6 +33,7 @@ const VHSItem = styled.a`
   .title {
     font-weight: bold;
     margin-bottom: 0.5rem;
+    text-align: center;
   }
 
   .description {

@@ -1,29 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-
-// Mock data
-const mockData = [
-  { id: 1, title: "12 Angry Men" },
-  { id: 2, title: "The Shawshank Redemption" },
-  { id: 3, title: "Schindler's List" },
-  { id: 4, title: "The Godfather" },
-  { id: 5, title: "Pulp Fiction" },
-  { id: 6, title: "Goodfellas" },
-  { id: 7, title: "Seven Samurai" },
-  { id: 8, title: "The Matrix" },
-  { id: 9, title: "Fight Club" },
-  { id: 10, title: "Life Is Beautiful" },
-];
 
 const Container = styled.div`
   position: relative;
   width: 100%;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-bottom: 10px;
 `;
 
 const SearchInput = styled.input`
@@ -70,15 +51,44 @@ const OptionItem = styled.li`
   }
 `;
 
+const Error = styled.p`
+  color: red;
+  margin: 1rem 0;
+`;
+
 const DynamicSearch: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [allVHS, setAllVHS] = useState<any[]>([]);
   const [filteredOptions, setFilteredOptions] = useState<any[]>([]);
   const [showOptions, setShowOptions] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch('http://localhost:3000/api/vhs');
+        if (!response.ok) {
+
+        }
+        const data = await response.json();
+        setAllVHS(data);
+      } catch (err) {
+        setError('Error fetching data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     if (searchQuery) {
-      const results = mockData.filter((movie) =>
+      const results = allVHS.filter((movie) =>
         movie.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredOptions(results);
@@ -87,7 +97,7 @@ const DynamicSearch: React.FC = () => {
       setFilteredOptions([]);
       setShowOptions(false);
     }
-  }, [searchQuery]);
+  }, [searchQuery, allVHS]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -106,8 +116,10 @@ const DynamicSearch: React.FC = () => {
         onChange={handleInputChange}
         placeholder="Type here to search..."
       />
+      {loading && <p>Loading...</p>}
+      {error && <Error>{error}</Error>}
       <OptionsList showOptions={showOptions}>
-        {filteredOptions.map((movie) => (
+        {filteredOptions.map((movie: any) => (
           <OptionItem key={movie.id} onClick={() => handleOptionClick(movie.id)}>
             {movie.title}
           </OptionItem>
