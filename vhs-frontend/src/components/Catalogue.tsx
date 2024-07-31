@@ -10,16 +10,19 @@ const CatalogueContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
 `;
 
 const VHSItem = styled.a`
-  flex: 0 1 calc(25% - 1rem);
+  flex: 0 1 calc(20% - 1rem);
   margin: 0.5rem;
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
 
   img {
     width: 100%;
@@ -40,10 +43,15 @@ const VHSItem = styled.a`
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
   }
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const PlaceholderImage = styled.div`
   width: 100%;
+  height: 15rem;
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
   background-color: #ccc;
   display: flex;
@@ -63,9 +71,13 @@ const AddButton = styled.a`
   border-radius: 4px;
   font-size: 1rem;
   text-align: center;
+  transition: transform 0.3s ease;
+
 
   &:hover {
-    background-color: var(--surface-s3);
+    background-color: var(--primary-variant);
+    transform: scale(1.1);
+
   }
 `;
 
@@ -102,9 +114,9 @@ const Catalogue: React.FC = () => {
       {vhsData.map((vhs) => (
         <VHSItem key={vhs.id} href={`/vhs/${vhs.id}`}>
           {vhs.thumbnail ? (
-            <img src={vhs.thumbnail} alt={vhs.title} />
+            <img src={`http://localhost:3000/${vhs.thumbnail}`} alt={vhs.title} />
           ) : (
-            <PlaceholderImage>No Image</PlaceholderImage>
+            <PlaceholderImage>{vhs.thumbnail}</PlaceholderImage>
           )}
           <div className="details">
             <div className="title">{vhs.title}</div>

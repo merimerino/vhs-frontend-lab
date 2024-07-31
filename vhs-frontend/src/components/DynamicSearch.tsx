@@ -9,14 +9,14 @@ const Container = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 10px;
+  padding: 0.5rem;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   &:focus {
     outline: none;
-    border-color: var(--primary-variant);
+    border-color: var(--surface-s2);
   }
 `;
 
@@ -41,7 +41,7 @@ const OptionsList = styled.ul<OptionsListProps>`
 `;
 
 const OptionItem = styled.li`
-  padding: 10px;
+  padding: 0.5rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: var(--primary-text);

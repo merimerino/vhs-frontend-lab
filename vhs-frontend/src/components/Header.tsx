@@ -37,13 +37,16 @@ const NavLinks = styled.nav`
   display: flex;
   gap: 2rem;
 
+
   a {
     text-decoration: none;
-    color: var(--primary-default);
+    color: var(--primary-text);
     font-size: 16px;
+    transition: transform 0.3s ease;
+
 
     &:hover {
-      text-decoration: underline;
+      transform: scale(1.2);
     }
   }
 `;

@@ -1,16 +1,22 @@
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { EditSVG, TrashSVG } from '../../public/Icons';
+
 
 const DetailContainer = styled.div`
   padding: 2rem;
-  max-width: 800px;
+  width: 50rem;
   margin: 0 auto;
   color: var(--primary-text);
   background-color: var(--surface-s1);
-  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Title = styled.h1`
@@ -31,14 +37,13 @@ const Info = styled.div`
 `;
 
 const Thumbnail = styled.img`
-  width: 600px;
-  height: 300px;
+  width: 20rem;
   object-fit: cover;
   margin-bottom: 1rem;
-  border-radius: 8px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 8px;
 `;
 
 const Button = styled.button`
@@ -55,13 +60,28 @@ const Button = styled.button`
   }
 `;
 
-const DeleteButton = styled(Button)`
-  background-color: var(--secondary-default);
 
+const IconButton = styled.button`
+  background-color: var(--secondary-default);
+  border-radius:50%;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+
+
+  }
   &:hover {
-    background-color: var(--surface-s3);
+    transform: scale(1.2);
   }
 `;
+
 
 const Modal = styled.div<{ open: boolean }>`
   display: ${({ open }) => (open ? 'block' : 'none')};
@@ -80,6 +100,7 @@ const Modal = styled.div<{ open: boolean }>`
 const ModalBackground = styled.div<{ open: boolean }>`
   display: ${({ open }) => (open ? 'block' : 'none')};
   position: fixed;
+  background-color: var(--primary-background);
   top: 0;
   left: 0;
   width: 100%;
@@ -147,10 +168,18 @@ const VHSDetail: React.FC<VHSDetailProps> = ({
   };
   return (
     <DetailContainer>
+      <Buttons>
+        <IconButton onClick={handleEdit}>
+          <EditSVG />
+        </IconButton>
+        <IconButton onClick={handleDelete}>
+          <TrashSVG />
+        </IconButton>
+      </Buttons>
       {thumbnail ? (
-        <Thumbnail src={thumbnail} alt={title} />
+        <Thumbnail src={`http://localhost:3000/${thumbnail}`} alt={title} />
       ) : (
-        <Thumbnail src="https://via.placeholder.com/600x300" alt="No image available" />
+        <Thumbnail src="https://via.placeholder.com/100x150" alt="No image available" />
       )}
       <Title>{title}</Title>
       <Description>{description}</Description>
@@ -160,8 +189,7 @@ const VHSDetail: React.FC<VHSDetailProps> = ({
       <Info><b>Rental Price:</b> ${rentalPrice}</Info>
       <Info><b>Rental Duration:</b> {rentalDuration} days</Info>
       <Info><b>Quantity:</b> {quantity}</Info>
-      <Button onClick={handleEdit}>Edit</Button>
-      <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
+
 
       <ModalBackground open={showModal} onClick={cancelDelete} />
       <Modal open={showModal}>

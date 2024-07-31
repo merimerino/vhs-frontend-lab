@@ -10,6 +10,13 @@ const FormContainer = styled.div`
   background-color: var(--surface-s1);
 `;
 
+const Title = styled.div`
+  color: var(--primary-variant);
+  padding-bottom: 1rem;
+  font-size: 20px;
+  font-weight: bolder;
+`;
+
 const FormField = styled.div`
   margin-bottom: 1rem;
 `;
@@ -27,6 +34,11 @@ const Input = styled.input`
   border-radius: 4px;
   background-color: var(--surface-s1);
   color: var(--primary-text);
+
+  &:focus {
+    border: 1px solid var(--surface-s2);
+    outline: none;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -67,7 +79,7 @@ const FullWidthField = styled(FormField)`
 
 const ThumbnailContainer = styled.div`
   width: 18rem;
-  min-height: 5rem;
+  min-height: 20rem;
   border: 1px solid var(--on-surface-nLv1);
   display: flex;
   align-items: center;
@@ -123,7 +135,7 @@ const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false, initialData }) => {
           setRentalPrice(data.rentalPrice);
           setRentalDuration(data.rentalDuration);
           setQuantity(data.quantity);
-          setCurrentThumbnail(data.thumbnail ? `http://localhost:3000/public/images/vhs-thumbnails/${data.thumbnail}` : null);
+          setCurrentThumbnail(data.thumbnail ? `http://localhost:3000/${data.thumbnail}` : null);
         } catch (error) {
           setError('Failed to fetch VHS data');
         }
@@ -139,7 +151,7 @@ const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false, initialData }) => {
       setRentalPrice(initialData.rentalPrice);
       setRentalDuration(initialData.rentalDuration);
       setQuantity(initialData.quantity);
-      setCurrentThumbnail(initialData.thumbnail ? `http://localhost:3000/public/images/vhs-thumbnails/${initialData.thumbnail}` : null);
+      setCurrentThumbnail(initialData.thumbnail ? `http://localhost:3000/${initialData.thumbnail}` : null);
     }
   }, [id, initialData, isEdit]);
 
@@ -170,8 +182,7 @@ const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false, initialData }) => {
     console.log('FormData Entries:', Array.from(formData.entries()));
 
     try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "multipart/form-data");
+
 
       const response = await fetch(`http://localhost:3000/api/vhs${isEdit ? `/${id}` : ''}`, {
         method: isEdit ? 'PATCH' : 'POST',
@@ -191,7 +202,7 @@ const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false, initialData }) => {
 
   return (
     <FormContainer>
-      <h1>{isEdit ? 'Edit VHS' : 'Add New VHS'}</h1>
+      <Title>{isEdit ? 'Edit VHS' : 'Add new VHS'}</Title>
       <form onSubmit={handleSubmit}>
         <GridContainer>
           <div>
