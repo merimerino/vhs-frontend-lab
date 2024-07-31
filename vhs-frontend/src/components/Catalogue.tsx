@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import DynamicSearch from './DynamicSearch';
+import SortDropdown from './SortDropdown';
 import { VHSItem as VHSItemType } from '@/models/VHSItem';
 
 const CatalogueContainer = styled.div`
@@ -10,7 +11,12 @@ const CatalogueContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const VHSItem = styled.a`
@@ -22,7 +28,6 @@ const VHSItem = styled.a`
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-
 
   img {
     width: 100%;
@@ -73,17 +78,16 @@ const AddButton = styled.a`
   text-align: center;
   transition: transform 0.3s ease;
 
-
   &:hover {
     background-color: var(--primary-variant);
     transform: scale(1.1);
-
   }
 `;
 
 const Catalogue: React.FC = () => {
   const [vhsData, setVhsData] = useState<VHSItemType[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<'name' | 'year'>('name');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,11 +101,21 @@ const Catalogue: React.FC = () => {
         const data = await response.json();
         setVhsData(data);
       } catch (error) {
+        setError('Failed to fetch VHS data');
       }
     };
 
     fetchData();
   }, []);
+
+  const sortedVhsData = useMemo(() => {
+    return [...vhsData].sort((a, b) => {
+      if (sortBy === 'name') {
+        return a.title.localeCompare(b.title);
+      }
+      return (a.releasedAt > b.releasedAt ? 1 : -1);
+    });
+  }, [vhsData, sortBy]);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -109,9 +123,13 @@ const Catalogue: React.FC = () => {
 
   return (
     <CatalogueContainer>
-      <AddButton href="/add-vhs">Add VHS</AddButton>
-      <DynamicSearch/>
-      {vhsData.map((vhs) => (
+      <ButtonContainer>
+        <AddButton href="/add-vhs">Add VHS</AddButton>
+        <SortDropdown onSortChange={setSortBy} />
+      </ButtonContainer>
+
+      <DynamicSearch />
+      {sortedVhsData.map((vhs) => (
         <VHSItem key={vhs.id} href={`/vhs/${vhs.id}`}>
           {vhs.thumbnail ? (
             <img src={`http://localhost:3000/${vhs.thumbnail}`} alt={vhs.title} />

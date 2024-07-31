@@ -23,7 +23,7 @@ const Logo = styled.div`
 
   h1 {
     font-size: 24px;
-    color: var(--secondary-default);
+    color: var(--surface-s2);
     margin: 0;
     font-weight: lighter;
 

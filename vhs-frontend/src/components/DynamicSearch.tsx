@@ -72,7 +72,7 @@ const DynamicSearch: React.FC = () => {
       try {
         const response = await fetch('http://localhost:3000/api/vhs');
         if (!response.ok) {
-
+          setError('Response not ok');
         }
         const data = await response.json();
         setAllVHS(data);

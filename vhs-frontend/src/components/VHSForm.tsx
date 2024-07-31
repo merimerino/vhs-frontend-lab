@@ -190,7 +190,12 @@ const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false, initialData }) => {
       });
 
       if (response.ok) {
-        router.push('/catalogue');
+        if(id==undefined){          
+          router.push('/catalogue');
+        }else{
+          router.push(`/vhs/${id}`);
+        }
+          
       } else {
         const errorText = await response.text();
         setError(`Failed to save VHS: ${errorText}`);

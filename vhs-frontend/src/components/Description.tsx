@@ -19,17 +19,23 @@ const BigLogo = styled.div`
   }
 `;
 
+const YC = styled.span`
+  color: var(--surface-s2);
+`;
+
+const BC = styled.span`
+  color: var(--primary-variant);
+`;
+
+
 const Description = styled.p`
   width: 28rem;
   font-size: 20px;
   color: var(--primary-text);
   margin: 0;
-  font-weight: lighter;
+  font-weight: lighter;`;
 
-  span {
-    color: var(--primary-variant);
-  }
-`;
+
 
 const Header = () => {
   return (
@@ -38,7 +44,7 @@ const Header = () => {
         <img src="/vhs-logo.svg" alt="Logo" />
       </BigLogo>
       <Description>
-      Welcome to the V<span>H</span>S Catalogue, your ultimate destination for an extensive selection of VHS tapes available for rent. 
+      Welcome to the <YC>V</YC><BC>H</BC><YC>S</YC> Catalogue, your ultimate destination for an extensive selection of VHS tapes available for rent. 
       Explore our diverse collection and discover the perfect tapes to suit every taste and occasion.
       </Description>
     </DescriptionContainer>

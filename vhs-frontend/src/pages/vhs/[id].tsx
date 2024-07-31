@@ -10,11 +10,11 @@ const PageContainer = styled.div`
   height: 100vh;
 `;
 
-interface VHSItemPageProps {
+interface VHSPageProps {
   VHSItem: VHSItem | null;
 }
 
-const VHSItemPage: React.FC<VHSItemPageProps> = ({ VHSItem }) => {
+const VHSPage: React.FC<VHSPageProps> = ({ VHSItem }) => {
   return (
     <PageContainer>
       <Header />
@@ -38,7 +38,7 @@ const VHSItemPage: React.FC<VHSItemPageProps> = ({ VHSItem }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<VHSItemPageProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<VHSPageProps> = async (context) => {
   const { id } = context.params as { id: string };
 
   try {
@@ -63,4 +63,4 @@ export const getServerSideProps: GetServerSideProps<VHSItemPageProps> = async (c
   }
 };
 
-export default VHSItemPage;
+export default VHSPage;
