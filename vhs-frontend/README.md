@@ -1,7 +1,7 @@
 ## VHS Catalogue
 
 
-This is a React App for VHS Rental Catalogue.
+This is a React+Typescript WebApp for VHS Rental Catalogue.
 
 ## Design Prototype
 
