@@ -6,7 +6,7 @@ import { EditSVG, TrashSVG } from '../../public/Icons';
 
 const DetailContainer = styled.div`
   padding: 2rem;
-  width: 50rem;
+  width: 40rem;
   margin: 0 auto;
   color: var(--primary-text);
   background-color: var(--surface-s1);
@@ -37,7 +37,7 @@ const Info = styled.div`
 `;
 
 const Thumbnail = styled.img`
-  width: 20rem;
+  width: 15rem;
   object-fit: cover;
   margin-bottom: 1rem;
   display: block;

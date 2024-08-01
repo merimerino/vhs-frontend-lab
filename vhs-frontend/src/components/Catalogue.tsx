@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import DynamicSearch from './DynamicSearch';
 import SortDropdown from './SortDropdown';
@@ -47,6 +47,8 @@ const VHSItem = styled.a`
   .description {
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    text-align: center;
+
   }
 
   &:hover {
@@ -57,12 +59,12 @@ const VHSItem = styled.a`
 const PlaceholderImage = styled.div`
   width: 100%;
   height: 15rem;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  padding-top: 56.25%;
   background-color: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: var(--surface-s1);
   font-size: 1.5rem;
 `;
 
@@ -88,9 +90,12 @@ const Catalogue: React.FC = () => {
   const [vhsData, setVhsData] = useState<VHSItemType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'name' | 'year'>('name');
+  const [loading, setLoading] = useState<boolean>(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch("http://localhost:3000/api/vhs", {
           method: "GET",
@@ -103,6 +108,8 @@ const Catalogue: React.FC = () => {
       } catch (error) {
         setError('Failed to fetch VHS data');
       }
+      setLoading(false);
+
     };
 
     fetchData();
@@ -123,6 +130,8 @@ const Catalogue: React.FC = () => {
 
   return (
     <CatalogueContainer>
+      {loading && <p>Loading...</p>}
+
       <ButtonContainer>
         <AddButton href="/add-vhs">Add VHS</AddButton>
         <SortDropdown onSortChange={setSortBy} />

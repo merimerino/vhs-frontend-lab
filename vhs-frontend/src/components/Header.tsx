@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { LogoSVG } from '../../public/Icons';
 
 const HeaderContainer = styled.header`
   position: sticky;
@@ -15,6 +16,7 @@ const HeaderContainer = styled.header`
 const Logo = styled.div`
   display: flex;
   align-items: center;
+  gap:0.5rem;
 
   img {
     height: 4rem;
@@ -61,7 +63,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Logo>
-        <a href="/"><img src="/vhs-logo.svg" alt="Logo" /></a>
+        <LogoSVG/>
         <a href="/"><h1>V<span>H</span>S</h1></a>
       </Logo>
       <NavLinks>

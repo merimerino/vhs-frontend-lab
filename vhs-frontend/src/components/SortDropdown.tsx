@@ -13,7 +13,7 @@ const DropdownContainer = styled.div`
 
 const DropdownButton = styled.button`
   padding: 0.5rem 1rem;
-  background-color: var(--surface-s0);
+  background-color: var(--surface-s1);
   border: 1px solid var(--surface-s4);
   color: var(--primary-text);
   cursor: pointer;
@@ -27,10 +27,10 @@ const DropdownButton = styled.button`
 `;
 const DropdownContent = styled.div<DropdownContentProps>`
   position: absolute;
-  background-color: white;
+  background-color: var(--surface-s1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  min-width: 160px;
+  width: 6rem;
   z-index: 1;
   ${(props) =>
     props.open
@@ -47,7 +47,7 @@ const DropdownItem = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: var(--surface-s4);
   }
 `;
 

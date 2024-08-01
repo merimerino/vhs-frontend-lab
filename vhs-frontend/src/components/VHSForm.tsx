@@ -105,7 +105,7 @@ interface VHSFormProps {
   initialData?: any;
 }
 
-const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false, initialData }) => {
+const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [genre, setGenre] = useState('');
@@ -142,18 +142,8 @@ const VHSForm: React.FC<VHSFormProps> = ({ isEdit = false, initialData }) => {
       };
 
       fetchVHSData();
-    } else if (initialData) {
-      setTitle(initialData.title);
-      setDescription(initialData.description);
-      setGenre(initialData.genre);
-      setDuration(initialData.duration);
-      setReleasedAt(initialData.releasedAt);
-      setRentalPrice(initialData.rentalPrice);
-      setRentalDuration(initialData.rentalDuration);
-      setQuantity(initialData.quantity);
-      setCurrentThumbnail(initialData.thumbnail ? `http://localhost:3000/${initialData.thumbnail}` : null);
-    }
-  }, [id, initialData, isEdit]);
+    } 
+  }, [id, isEdit]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
