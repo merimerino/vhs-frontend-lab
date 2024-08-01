@@ -1,3 +1,13 @@
+## VHS Catalogue
+
+
+This is a React App for VHS Rental Catalogue.
+
+## Design Prototype
+
+Apps design [prototype](https://www.figma.com/proto/2nXKWvsJzYh6sUBtQ9qcEi/VHS-Catalogue?node-id=2-54&t=tzRTFev6xaLW3q04-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3%3A232) drawn in Figma.
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
